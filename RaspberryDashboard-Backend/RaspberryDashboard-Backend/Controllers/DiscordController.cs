@@ -7,17 +7,16 @@ namespace RaspberryDashboard_Backend.Controllers
     [ApiController]
     public class DiscordController : ControllerBase
     {
-        private IDiscordService _discordService;
+        private readonly IDiscordService _discordService;
         public DiscordController(IDiscordService discordService)
         {
             _discordService = discordService;
         }
 
         [HttpGet]
-        public string Get()
+        public ActionResult Get()
         {
-            _discordService.MoveToAFK();
-            return "done";
+            return Ok(_discordService.GetCurrent());
         }
     }
 }

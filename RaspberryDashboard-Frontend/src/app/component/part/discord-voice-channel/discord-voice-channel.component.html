@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-title>{{voiceChannel.name}}</mat-card-title>
+  <mat-card-content>
+    <div *ngFor="let user of voiceChannel.users">
+      <app-discord-user [discordUser]="user"></app-discord-user>
+    </div>
+
+  </mat-card-content>
+</mat-card>

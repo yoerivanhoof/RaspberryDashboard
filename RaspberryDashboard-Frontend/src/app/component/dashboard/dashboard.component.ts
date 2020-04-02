@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {TestingService} from "../../service/testing.service";
+import {SignalRService} from '../../service/signal-r.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +11,11 @@ export class DashboardComponent {
 
   public text = 'Click meeeeeeeeeeeeeeeee';
 
-  constructor(public testingService: TestingService) {
+  constructor(public testingService: TestingService, public signalRService: SignalRService) {
+    this.signalRService.startConnection();
   }
 
   test() {
-    this.testingService.testingSomething().subscribe((response: string) => {
-      this.text = response;
-    });
+    this.signalRService.SendMessage('HI');
   }
 }

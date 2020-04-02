@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import {log} from "util";
-import {HttpClient} from "@angular/common/http";
+import {Component} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,7 @@ import {HttpClient} from "@angular/common/http";
 export class AppComponent {
   title = 'RaspberryDashboard-Frontend';
 
-  constructor(private http: HttpClient){
-    this.http.get("http://localhost:5000/weatherforecast").subscribe(result=>{
-      this.title = result.toString();
-    })
+  constructor(private http: HttpClient) {
+
   }
 }

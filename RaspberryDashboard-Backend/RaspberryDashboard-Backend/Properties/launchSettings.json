@@ -19,7 +19,7 @@
     },
     "RaspberryDashboard_Backend": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "weatherforecast",
       "environmentVariables": {
         "DiscordBotToken": "NTkzODE3OTU2MDE0ODgyODI3.XoXlrg.hXLrizIRMWnMzV3a7fZw1LeY83E",

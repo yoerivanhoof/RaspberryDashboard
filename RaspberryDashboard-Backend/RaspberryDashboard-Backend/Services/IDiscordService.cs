@@ -7,5 +7,7 @@ namespace RaspberryDashboard_Backend.Services
         public Task MainAsync();
 
         public void MoveToAFK();
+
+        public string GetCurrent();
     }
 }

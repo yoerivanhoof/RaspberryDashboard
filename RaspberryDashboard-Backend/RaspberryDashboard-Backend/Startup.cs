@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RaspberryDashboard_Backend.Hubs;
 using RaspberryDashboard_Backend.Services;
 
 namespace RaspberryDashboard_Backend
@@ -27,12 +28,14 @@ namespace RaspberryDashboard_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
 
-            services.AddCors(o => o.AddPolicy("Allowall", builder =>
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {
                 builder.AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowAnyOrigin();
+                    .AllowCredentials()
+                    .WithOrigins("http://localhost:4200");
             }));
 
             services.AddSingleton<IDiscordService, DiscordService>();
@@ -46,7 +49,7 @@ namespace RaspberryDashboard_Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("Allowall");
+            app.UseCors("AllowAll");
 
             app.UseHttpsRedirection(); 
 
@@ -57,6 +60,7 @@ namespace RaspberryDashboard_Backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<DashboardHub>("/dashboardhub");
             });
         }
     }

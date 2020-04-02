@@ -9,12 +9,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './component/navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
+import { DiscordComponent } from './component/discord/discord.component';
+import { DiscordUserComponent } from './component/part/discord-user/discord-user.component';
+import { DiscordVoiceChannelComponent } from './component/part/discord-voice-channel/discord-voice-channel.component';
+import { DiscordServerComponent } from './component/part/discord-server/discord-server.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavigationComponent
+    NavigationComponent,
+    DiscordComponent,
+    DiscordUserComponent,
+    DiscordVoiceChannelComponent,
+    DiscordServerComponent
   ],
   imports: [
     HttpClientModule,

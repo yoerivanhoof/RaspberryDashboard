@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Discord;
+using Discord.Audio;
 using Discord.WebSocket;
+using Newtonsoft.Json;
+using RaspberryDashboard_Backend.Models;
 
 namespace RaspberryDashboard_Backend.Services
 {
@@ -21,6 +26,8 @@ namespace RaspberryDashboard_Backend.Services
 
             _client.Log += Log;
             _client.MessageReceived += MessageReceived;
+            
+            //_client.UserVoiceStateUpdated += _client_UserVoiceStateUpdated;
 
             // Remember to keep token private or to read it from an 
             // external source! In this case, we are reading the token 
@@ -36,10 +43,41 @@ namespace RaspberryDashboard_Backend.Services
             await Task.Delay(-1);
         }
 
+        private async Task _client_UserVoiceStateUpdated(SocketUser user, SocketVoiceState before, SocketVoiceState after)
+        {
+            Console.WriteLine(user.Username);
+            if (before.IsMuted == false && after.IsMuted == true)
+            {
+                user.SendMessageAsync("you got muted");
+            }
+        }
+
+        public string GetCurrent()
+        {
+            var server = new DiscordServer();
+            foreach (var voiceChannel in _client.GetGuild(377533648620093441).VoiceChannels.OrderBy(x=>x.Position))
+            {
+                var channel = new DiscordVoiceChannel(){id = voiceChannel.Id, name = voiceChannel.Name};
+
+                foreach (var channelUser in voiceChannel.Users)
+                {
+                    channel.users.Add(new DiscordUser(){id = channelUser.Id, username = channelUser.Username, avatarUrl = channelUser.GetAvatarUrl()});
+                    
+                }
+                server.voiceChannels.Add(channel);
+            }
+
+            return JsonConvert.SerializeObject(server);
+        }
+
         public async void MoveToAFK()
         {
-            _client.GetGuild(377533648620093441).GetUser(220164841166471168)
-                .ModifyAsync(user => user.ChannelId = 426351658482663454);
+            var audioclient = await _client.GetGuild(377533648620093441).VoiceChannels.First().ConnectAsync();
+            SendAsync(audioclient, "C:\\Users\\TheRiverVan\\source\\repos\\RaspberryDashboard\\RaspberryDashboard-Backend\\RaspberryDashboard-Backend\\bin\\Debug\\netcoreapp3.1\\defqon.mp3").GetAwaiter().OnCompleted(
+                () =>
+                {
+                    _client.GetGuild(377533648620093441).VoiceChannels.First().DisconnectAsync();
+                });
         }
 
         private Task Log(LogMessage msg)
@@ -58,6 +96,36 @@ namespace RaspberryDashboard_Backend.Services
 
 
                 //await message.Channel.SendMessageAsync("Pong!");
+            }
+
+            if (message.Content == "!join")
+            {
+                
+                
+
+            }
+        }
+
+        private Process CreateStream(string path)
+        {
+            return Process.Start(new ProcessStartInfo
+            {
+                FileName = "ffmpeg",
+                Arguments = $"-hide_banner -loglevel panic -i \"{path}\" -ac 2 -f s16le -ar 48000 pipe:1",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+            });
+        }
+
+        private async Task SendAsync(IAudioClient client, string path)
+        {
+            // Create FFmpeg using the previous example
+            using (var ffmpeg = CreateStream(path))
+            using (var output = ffmpeg.StandardOutput.BaseStream)
+            using (var discord = client.CreatePCMStream(AudioApplication.Mixed))
+            {
+                try { await output.CopyToAsync(discord); }
+                finally { await discord.FlushAsync(); }
             }
         }
     }
