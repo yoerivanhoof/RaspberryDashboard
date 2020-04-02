@@ -1,13 +1,15 @@
 version: "3.7"
 services:
     dashboard-backend:
-        container_name: RaspberryDashboard-Backend
-        image: therivervan/raspberrydashboardbackend
+        container_name: therivervan-raspberrydashboardbackend
+        image: therivervan/raspberrydashboardbackend:latest
+        restart: unless-stopped
         ports:
             - "5000:80"
             - "5001:443"
     dashboard-frontend:
-        container_name: RaspberryDashboard-Frontend
-        image: therivervan/raspberrydashboardfrontend
+        container_name: therivervan-raspberrydashboardfrontend
+        restart: unless-stopped
+        image: therivervan/raspberrydashboardfrontend:latest
         ports:
             - "80:80"
