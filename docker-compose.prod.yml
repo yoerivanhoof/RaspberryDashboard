@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+    dashboard-backend:
+        container_name: RaspberryDashboard-Backend
+        image: therivervan/raspberrydashboardbackend
+        ports:
+            - "5000:80"
+            - "5001:443"
+    dashboard-frontend:
+        container_name: RaspberryDashboard-Frontend
+        image: therivervan/raspberrydashboardfrontend
+        ports:
+            - "80:80"
