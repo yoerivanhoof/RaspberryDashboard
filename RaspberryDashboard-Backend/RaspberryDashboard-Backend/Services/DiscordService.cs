@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Audio;
 using Discord.WebSocket;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
+using RaspberryDashboard_Backend.Hubs;
 using RaspberryDashboard_Backend.Models;
 
 namespace RaspberryDashboard_Backend.Services
@@ -13,9 +16,11 @@ namespace RaspberryDashboard_Backend.Services
     public class DiscordService: IDiscordService
     {
         private DiscordSocketClient _client;
+        private readonly IHubContext<DiscordHub> _hub;
 
-        public DiscordService()
+        public DiscordService(IHubContext<DiscordHub> hub)
         {
+            _hub = hub;
             MainAsync();
         }
 
@@ -27,7 +32,7 @@ namespace RaspberryDashboard_Backend.Services
             _client.Log += Log;
             _client.MessageReceived += MessageReceived;
             
-            //_client.UserVoiceStateUpdated += _client_UserVoiceStateUpdated;
+            _client.UserVoiceStateUpdated += _client_UserVoiceStateUpdated;
 
             // Remember to keep token private or to read it from an 
             // external source! In this case, we are reading the token 
@@ -43,13 +48,10 @@ namespace RaspberryDashboard_Backend.Services
             await Task.Delay(-1);
         }
 
+
         private async Task _client_UserVoiceStateUpdated(SocketUser user, SocketVoiceState before, SocketVoiceState after)
         {
-            Console.WriteLine(user.Username);
-            if (before.IsMuted == false && after.IsMuted == true)
-            {
-                user.SendMessageAsync("you got muted");
-            }
+            _hub.Clients.All.SendCoreAsync("VoiceStateUpdated", new[] {""});
         }
 
         public string GetCurrent()

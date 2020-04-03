@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace RaspberryDashboard_Backend.Services
 {
@@ -9,5 +10,6 @@ namespace RaspberryDashboard_Backend.Services
         public void MoveToAFK();
 
         public string GetCurrent();
+
     }
 }

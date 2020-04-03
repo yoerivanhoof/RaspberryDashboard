@@ -12,10 +12,14 @@ export class DiscordComponent implements OnInit {
   public discordServer: DiscordServer = new DiscordServer();
 
   constructor(public discordService: DiscordService) {
+
+    this.discordService.discordServer.subscribe(server => {
+      this.discordServer = server;
+    });
   }
 
   ngOnInit() {
-    this.discordService.getCurrent().subscribe(server => this.discordServer = server);
+
   }
 
 }

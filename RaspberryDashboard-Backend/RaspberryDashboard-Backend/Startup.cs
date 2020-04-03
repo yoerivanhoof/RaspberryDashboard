@@ -61,6 +61,7 @@ namespace RaspberryDashboard_Backend
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<DashboardHub>("/dashboardhub");
+                endpoints.MapHub<DiscordHub>("/discordhub");
             });
         }
     }
