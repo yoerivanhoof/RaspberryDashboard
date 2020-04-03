@@ -1,5 +1,9 @@
 export class DiscordUser {
-  public id: number;
-  public username: string;
-  public avatarUrl: string;
+  public Id: string;
+  public Username: string;
+  public AvatarUrl: string;
+
+  public ChannelId: string;
+  public Muted: boolean;
+  public Deafend: boolean;
 }

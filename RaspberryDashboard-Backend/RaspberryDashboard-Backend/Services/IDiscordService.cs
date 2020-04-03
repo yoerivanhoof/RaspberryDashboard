@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using RaspberryDashboard_Backend.Models;
 
 namespace RaspberryDashboard_Backend.Services
 {
@@ -7,9 +8,9 @@ namespace RaspberryDashboard_Backend.Services
     {
         public Task MainAsync();
 
-        public void MoveToAFK();
 
-        public string GetCurrent();
+        public string GetCurrentState();
 
+        public void UpdateUser(DiscordUser discordUser);
     }
 }

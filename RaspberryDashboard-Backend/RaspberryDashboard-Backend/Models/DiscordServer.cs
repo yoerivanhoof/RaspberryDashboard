@@ -4,6 +4,6 @@ namespace RaspberryDashboard_Backend.Models
 {
     public class DiscordServer
     {
-        public List<DiscordVoiceChannel> voiceChannels = new List<DiscordVoiceChannel>();
+        public List<DiscordVoiceChannel> VoiceChannels { get; set; } = new List<DiscordVoiceChannel>();
     }
 }

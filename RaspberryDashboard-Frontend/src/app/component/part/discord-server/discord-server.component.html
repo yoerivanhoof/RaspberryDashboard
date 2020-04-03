@@ -1,8 +1,8 @@
 <mat-card>
   <mat-card-title></mat-card-title>
   <mat-card-content>
-    <div *ngFor="let voiceChannel of discordServer.voiceChannels">
-      <app-discord-voice-channel [voiceChannel]="voiceChannel"></app-discord-voice-channel>
+    <div *ngFor="let voiceChannel of discordServer.VoiceChannels">
+      <app-discord-voice-channel (userEditedEvent)="userEdited($event)" [allChannels]="discordServer.VoiceChannels" [voiceChannel]="voiceChannel"></app-discord-voice-channel>
     </div>
   </mat-card-content>
 </mat-card>

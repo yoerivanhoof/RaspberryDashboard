@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {OverlayContainer} from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class AppComponent {
   title = 'RaspberryDashboard-Frontend';
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, overlayContainer: OverlayContainer) {
+    overlayContainer.getContainerElement().classList.add('candy-app-theme');
   }
 }

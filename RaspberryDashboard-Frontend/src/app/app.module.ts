@@ -13,6 +13,7 @@ import { DiscordComponent } from './component/discord/discord.component';
 import { DiscordUserComponent } from './component/part/discord-user/discord-user.component';
 import { DiscordVoiceChannelComponent } from './component/part/discord-voice-channel/discord-voice-channel.component';
 import { DiscordServerComponent } from './component/part/discord-server/discord-server.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DiscordServerComponent } from './component/part/discord-server/discord-
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
+    DragDropModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,

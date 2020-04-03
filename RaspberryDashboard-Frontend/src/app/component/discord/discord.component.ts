@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DiscordService} from '../../service/discord.service';
 import {DiscordServer} from '../../model/discord-server';
+import {DiscordUser} from '../../model/discord-user';
 
 @Component({
   selector: 'app-discord',
@@ -22,4 +23,7 @@ export class DiscordComponent implements OnInit {
 
   }
 
+  userEdited($event: DiscordUser) {
+    this.discordService.updateUser($event);
+  }
 }

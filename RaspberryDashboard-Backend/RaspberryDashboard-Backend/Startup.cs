@@ -35,7 +35,7 @@ namespace RaspberryDashboard_Backend
                 builder.AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials()
-                    .WithOrigins("http://localhost:4200");
+                    .WithOrigins(new []{"http://localhost", "http://localhost:4200"});
             }));
 
             services.AddSingleton<IDiscordService, DiscordService>();
@@ -51,6 +51,7 @@ namespace RaspberryDashboard_Backend
 
             app.UseCors("AllowAll");
 
+            
             app.UseHttpsRedirection(); 
 
             app.UseRouting();
@@ -60,7 +61,6 @@ namespace RaspberryDashboard_Backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<DashboardHub>("/dashboardhub");
                 endpoints.MapHub<DiscordHub>("/discordhub");
             });
         }

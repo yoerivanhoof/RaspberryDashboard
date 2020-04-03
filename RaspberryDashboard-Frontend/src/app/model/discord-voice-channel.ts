@@ -1,7 +1,7 @@
 import {DiscordUser} from './discord-user';
 
 export class DiscordVoiceChannel {
-  public users: DiscordUser[] = [];
-  public id: number;
-  public name: string;
+  public Users: DiscordUser[] = [];
+  public Id: string;
+  public Name: string;
 }
