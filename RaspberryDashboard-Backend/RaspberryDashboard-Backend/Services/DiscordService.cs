@@ -46,7 +46,6 @@ namespace RaspberryDashboard_Backend.Services
 
         private async Task _client_UserVoiceStateUpdated(SocketUser user, SocketVoiceState before, SocketVoiceState after)
         {
-            Console.WriteLine(user.Id);
             await _hub.Clients.All.SendCoreAsync("VoiceStateUpdated", new[] {""});
         }
 

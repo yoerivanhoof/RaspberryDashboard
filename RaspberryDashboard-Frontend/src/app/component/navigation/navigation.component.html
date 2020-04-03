@@ -21,6 +21,8 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>RaspberryDashboard</span>
+      <span class="example-spacer"></span>
+      <span>{{ time | date: 'H:MM E MMM d' }}</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
 
