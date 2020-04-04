@@ -10,14 +10,12 @@ import {DiscordUser} from '../model/discord-user';
   providedIn: 'root'
 })
 export class DiscordService {
-  public DiscordServer;
   private hubConnection: signalR.HubConnection;
   private subject: BehaviorSubject<DiscordServer> = new BehaviorSubject<DiscordServer>(new DiscordServer());
   public discordServer = this.subject.asObservable();
 
   constructor(public httpClient: HttpClient) {
     this.httpClient.get<DiscordServer>(`${environment.backendURL}/discord`).subscribe(response => {
-      console.log(response);
       this.subject.next(response);
     });
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -41,10 +39,7 @@ export class DiscordService {
   }
 
   updateUser($event: DiscordUser) {
-    console.log($event);
     this.httpClient.post(`${environment.backendURL}/discord`, $event).subscribe(response => {
-      console.log(response);
-
     });
   }
 }

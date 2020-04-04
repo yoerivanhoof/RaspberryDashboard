@@ -33,7 +33,7 @@ namespace RaspberryDashboard_Backend.Services
 
             _client.Log += Log;
             _client.MessageReceived += MessageReceived;
-            _client.UserVoiceStateUpdated += _client_UserVoiceStateUpdated;
+            _client.UserVoiceStateUpdated += client_UserVoiceStateUpdated;
 
             await _client.LoginAsync(TokenType.Bot,
                 Environment.GetEnvironmentVariable("DiscordBotToken"));
@@ -44,7 +44,7 @@ namespace RaspberryDashboard_Backend.Services
         }
 
 
-        private async Task _client_UserVoiceStateUpdated(SocketUser user, SocketVoiceState before, SocketVoiceState after)
+        private async Task client_UserVoiceStateUpdated(SocketUser user, SocketVoiceState before, SocketVoiceState after)
         {
             await _hub.Clients.All.SendCoreAsync("VoiceStateUpdated", new[] {""});
         }
@@ -90,7 +90,7 @@ namespace RaspberryDashboard_Backend.Services
         
         private Task Log(LogMessage msg)
         {
-            Console.WriteLine(msg.ToString());
+            Console.WriteLine($"Discord.Net {msg.ToString()}");
             return Task.CompletedTask;
         }
 
@@ -109,6 +109,9 @@ namespace RaspberryDashboard_Backend.Services
                         {
                             user.ChannelId = _client.GetGuild(377533648620093441).AFKChannel.Id;
                         });
+                    break;
+                case "!join":
+                    _client.GetGuild(377533648620093441).VoiceChannels.First().ConnectAsync();
                     break;
             }
         }

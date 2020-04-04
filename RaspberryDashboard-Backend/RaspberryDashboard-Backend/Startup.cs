@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using RaspberryDashboard_Backend.Hubs;
 using RaspberryDashboard_Backend.Services;
 
@@ -35,24 +28,22 @@ namespace RaspberryDashboard_Backend
                 builder.AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials()
-                    .WithOrigins(new []{"http://localhost", "http://localhost:4200"});
+                    .WithOrigins("http://localhost", "http://localhost:4200");
             }));
 
             services.AddSingleton<IDiscordService, DiscordService>();
+            services.AddSingleton<IMqttService, MqttService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDiscordService discordService)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDiscordService discordService,
+            IMqttService mqttService)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseCors("AllowAll");
 
-            
-            app.UseHttpsRedirection(); 
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 

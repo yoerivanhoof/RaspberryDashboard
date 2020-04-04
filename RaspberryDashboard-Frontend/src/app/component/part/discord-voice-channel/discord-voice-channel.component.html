@@ -1,13 +1,14 @@
 <mat-card class="channelCard">
   <mat-card-title class="channelTitle">{{voiceChannel.Name}}</mat-card-title>
-  <mat-card-content cdkDropList class="example-list"
-                    id={{voiceChannel.Id}}
-                    [cdkDropListData]="voiceChannel.Users"
-                    (cdkDropListDropped)="dropItem($event)"
-                    [cdkDropListConnectedTo]="getConnectedList()">
-    <div *ngFor="let user of voiceChannel.Users" >
-      <app-discord-user cdkDrag [discordUser]="user" [cdkDragData]="user"></app-discord-user>
-    </div>
+  <mat-card-content
+    cdkDropList
+    [id]="voiceChannel.Id"
+    [cdkDropListData]="voiceChannel.Users"
+    [cdkDropListConnectedTo]="getOtherChannels()"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+
+    <app-discord-user *ngFor="let user of voiceChannel.Users" cdkDrag [discordUser]="user"></app-discord-user>
 
   </mat-card-content>
 </mat-card>

@@ -13,18 +13,14 @@ export class DiscordVoiceChannelComponent implements OnInit {
   @Input() voiceChannel: DiscordVoiceChannel;
   @Input() allChannels: DiscordVoiceChannel[];
   @Output() userEditedEvent = new EventEmitter<DiscordUser>();
-  otherChannels: string[] = [];
 
   constructor() {
   }
 
   ngOnInit() {
-    this.allChannels.forEach(channel => {
-        this.otherChannels.push(channel.Id);
-    });
   }
 
-  dropItem(event: CdkDragDrop<DiscordUser[]>) {
+  drop(event: CdkDragDrop<DiscordUser[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -32,12 +28,18 @@ export class DiscordVoiceChannelComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      event.container.data[event.currentIndex].ChannelId = event.container.id;
+      this.userEditedEvent.emit(event.container.data[event.currentIndex]);
     }
-    event.container.data[event.currentIndex].ChannelId = event.container.id;
-    this.userEditedEvent.emit(event.container.data[event.currentIndex]);
   }
 
-  getConnectedList(): any[] {
-    return this.allChannels.map(x => `${x.Id}`);
+  getOtherChannels() {
+    const channels = [];
+    this.allChannels.forEach(channel => {
+      if (channel.Id !== this.voiceChannel.Id) {
+        channels.push(channel.Id);
+      }
+    });
+    return channels;
   }
 }

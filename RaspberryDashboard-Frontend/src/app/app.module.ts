@@ -14,6 +14,8 @@ import { DiscordUserComponent } from './component/part/discord-user/discord-user
 import { DiscordVoiceChannelComponent } from './component/part/discord-voice-channel/discord-voice-channel.component';
 import { DiscordServerComponent } from './component/part/discord-server/discord-server.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { LightsComponent } from './component/lights/lights.component';
+import { LightComponent } from './component/part/light/light.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     DiscordComponent,
     DiscordUserComponent,
     DiscordVoiceChannelComponent,
-    DiscordServerComponent
+    DiscordServerComponent,
+    LightsComponent,
+    LightComponent
   ],
   imports: [
     HttpClientModule,

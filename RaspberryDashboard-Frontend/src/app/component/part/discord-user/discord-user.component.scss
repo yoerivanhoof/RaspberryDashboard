@@ -1,7 +1,20 @@
-.userTitle{
-  font-size: 18px;
+.example-box {
+  padding: 10px 10px;
+  border-bottom: solid 1px black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: move;
+  background: #333;
+  font-size: 14px;
 }
 
-.userCard{
-  padding: 5px;
+.example-box:last-child {
+  border: none;
+}
+
+.userIcon{
+  height: 25px;
+  margin-right: 10px
 }

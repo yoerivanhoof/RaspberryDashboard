@@ -11,12 +11,10 @@ export class DiscordServerComponent implements OnInit {
   @Input() discordServer: DiscordServer;
   @Output() userEditedEvent = new EventEmitter<DiscordUser>();
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor() {
   }
 
-  userEdited($event: DiscordUser) {
-    this.userEditedEvent.emit($event);
+  ngOnInit() {
   }
 }

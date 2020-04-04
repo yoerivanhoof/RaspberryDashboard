@@ -20,7 +20,6 @@ export class DiscordComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   userEdited($event: DiscordUser) {
