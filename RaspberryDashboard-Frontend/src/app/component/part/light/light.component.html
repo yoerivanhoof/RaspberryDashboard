@@ -1,6 +1,10 @@
+<mcc-color-picker [hidden]="!colorPickerOpen" [isOpen]="colorPickerOpen" (clickOut)="colorPickerCancel()" hideButtons="true" hideEmptyUsedColors="true">
+</mcc-color-picker>
 <div class="light" >
   <div>Bureau</div>
-  <button mat-fab (press)="onPress($event)" >
-    <mat-icon>wb_sunny</mat-icon>
+  <button matRipple color="primary" mat-fab (click)="lightClick($event)" (press)="lightPress($event)" >
+    <mat-icon >wb_sunny</mat-icon>
   </button>
 </div>
+
+

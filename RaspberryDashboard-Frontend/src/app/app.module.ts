@@ -8,7 +8,17 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './component/navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatGridListModule,
+  MatCardModule,
+  MatMenuModule,
+  MatFormFieldModule
+} from '@angular/material';
 import { DiscordComponent } from './component/discord/discord.component';
 import { DiscordUserComponent } from './component/part/discord-user/discord-user.component';
 import { DiscordVoiceChannelComponent } from './component/part/discord-voice-channel/discord-voice-channel.component';
@@ -16,6 +26,8 @@ import { DiscordServerComponent } from './component/part/discord-server/discord-
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { LightsComponent } from './component/lights/lights.component';
 import { LightComponent } from './component/part/light/light.component';
+import {MccColorPickerModule, MccTimerPickerModule} from 'material-community-components';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,7 +55,11 @@ import { LightComponent } from './component/part/light/light.component';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MccTimerPickerModule,
+    MccColorPickerModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

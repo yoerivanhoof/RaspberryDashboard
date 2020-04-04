@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger, keyframes, animate, transition} from '@angular/animations';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-light',
@@ -7,10 +6,32 @@ import { trigger, keyframes, animate, transition} from '@angular/animations';
   styleUrls: ['./light.component.scss']
 })
 export class LightComponent implements OnInit {
+  pressed = false;
+  colorPickerOpen = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  lightPress($event) {
+    this.pressed = true;
+    this.colorPickerOpen = true;
+    console.log('press');
+  }
+
+  lightClick($event: MouseEvent) {
+    if (!this.pressed) {
+      console.log('click');
+    } else {
+      this.pressed = false;
+    }
+  }
+
+  colorPickerCancel() {
+    this.colorPickerOpen = false;
+    this.pressed = false;
+    console.log('cancel');
+  }
 }
