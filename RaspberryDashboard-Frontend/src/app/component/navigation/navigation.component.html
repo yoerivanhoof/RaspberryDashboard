@@ -5,9 +5,8 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/discord">Discord</a>
-      <a mat-list-item href="/lights">Lights</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item href="/discord"><mat-icon>chat</mat-icon>Discord</a>
+      <a mat-list-item href="/lights"><mat-icon>lightbulb</mat-icon>Lights</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,6 +23,7 @@
       <span class="example-spacer"></span>
       <span>{{ time | date: 'H:mm E MMM d' }}</span>
     </mat-toolbar>
+    
     <router-outlet></router-outlet>
 
   </mat-sidenav-content>

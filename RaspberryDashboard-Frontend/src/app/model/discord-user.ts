@@ -5,5 +5,5 @@ export class DiscordUser {
 
   public ChannelId: string;
   public Muted: boolean;
-  public Deafend: boolean;
+  public Deaf: boolean;
 }

@@ -8,6 +8,6 @@
         public string ChannelId { get; set; }
 
         public bool Muted { get; set; }
-        public bool Deafend { get; set; }
+        public bool Deaf { get; set; }
     }
 }

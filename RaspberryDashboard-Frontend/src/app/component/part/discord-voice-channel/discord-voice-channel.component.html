@@ -8,7 +8,7 @@
     class="example-list"
     (cdkDropListDropped)="drop($event)">
 
-    <app-discord-user *ngFor="let user of voiceChannel.Users" cdkDrag [discordUser]="user"></app-discord-user>
+    <app-discord-user *ngFor="let user of voiceChannel.Users" cdkDrag [discordUser]="user" (userEditedEvent)="userEditedEvent.emit($event)"></app-discord-user>
 
   </mat-card-content>
 </mat-card>

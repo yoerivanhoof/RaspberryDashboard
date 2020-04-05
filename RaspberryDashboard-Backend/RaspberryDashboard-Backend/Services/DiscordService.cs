@@ -66,7 +66,7 @@ namespace RaspberryDashboard_Backend.Services
                         Id = channelUser.Id.ToString(), 
                         Username = !string.IsNullOrEmpty(channelUser.Nickname) ? channelUser.Nickname : channelUser.Username, 
                         AvatarUrl = channelUser.GetAvatarUrl(), 
-                        Deafend = channelUser.IsDeafened, 
+                        Deaf = channelUser.IsDeafened, 
                         Muted = channelUser.IsMuted, 
                         ChannelId = voiceChannel.Id.ToString()
                     });
@@ -84,7 +84,7 @@ namespace RaspberryDashboard_Backend.Services
             {
                 user.ChannelId = Convert.ToUInt64(discordUser.ChannelId);
                 user.Mute = discordUser.Muted;
-                user.Deaf = discordUser.Deafend;
+                user.Deaf = discordUser.Deaf;
             });
         }
         

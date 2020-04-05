@@ -14,7 +14,15 @@
   border: none;
 }
 
-.userIcon{
+.userIcon {
   height: 25px;
   margin-right: 10px
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.soundOptions {
+  padding: 0 5px;
 }
