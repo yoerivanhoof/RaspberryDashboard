@@ -15,7 +15,7 @@ export class LightComponent implements OnInit {
   ngOnInit() {
   }
 
-  lightPress($event) {
+  lightPress() {
     this.pressed = true;
     this.colorPickerOpen = true;
     console.log('press');
@@ -27,12 +27,6 @@ export class LightComponent implements OnInit {
     } else {
       this.pressed = false;
     }
-  }
-
-  colorPickerCancel() {
-    this.colorPickerOpen = false;
-    this.pressed = false;
-    console.log('cancel');
   }
 
 }
