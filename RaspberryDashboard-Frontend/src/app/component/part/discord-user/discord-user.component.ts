@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DiscordUser} from '../../../model/discord-user';
+import {DiscordUser} from "../../../model/discord-user";
 
 @Component({
   selector: 'app-discord-user',
@@ -12,5 +12,4 @@ export class DiscordUserComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

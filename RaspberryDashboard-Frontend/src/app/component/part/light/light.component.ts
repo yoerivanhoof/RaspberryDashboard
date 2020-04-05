@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-light',
@@ -34,4 +34,5 @@ export class LightComponent implements OnInit {
     this.pressed = false;
     console.log('cancel');
   }
+
 }

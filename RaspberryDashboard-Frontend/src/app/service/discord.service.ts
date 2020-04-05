@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject} from 'rxjs';
-import {environment} from '../../environments/environment';
-import {DiscordServer} from '../model/discord-server';
+import { Injectable } from '@angular/core';
+import {environment} from "../../environments/environment";
+import {DiscordUser} from "../model/discord-user";
+import {DiscordServer} from "../model/discord-server";
+import {BehaviorSubject} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 import * as signalR from '@aspnet/signalr';
-import {DiscordUser} from '../model/discord-user';
 
 @Injectable({
   providedIn: 'root'

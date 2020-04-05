@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DiscordVoiceChannel} from '../../../model/discord-voice-channel';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {DiscordUser} from '../../../model/discord-user';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {DiscordUser} from "../../../model/discord-user";
+import {DiscordVoiceChannel} from "../../../model/discord-voice-channel";
 
 @Component({
   selector: 'app-discord-voice-channel',
@@ -42,4 +42,5 @@ export class DiscordVoiceChannelComponent implements OnInit {
     });
     return channels;
   }
+
 }

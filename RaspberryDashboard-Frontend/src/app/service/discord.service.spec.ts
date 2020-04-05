@@ -3,10 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { DiscordService } from './discord.service';
 
 describe('DiscordService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: DiscordService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(DiscordService);
+  });
 
   it('should be created', () => {
-    const service: DiscordService = TestBed.get(DiscordService);
     expect(service).toBeTruthy();
   });
 });

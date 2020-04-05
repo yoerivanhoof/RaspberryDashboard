@@ -1,21 +1,11 @@
-import {Component} from '@angular/core';
-import {TestingService} from "../../service/testing.service";
-import {SignalRService} from '../../service/signal-r.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-
-  public text = 'Click meeeeeeeeeeeeeeeee';
-
-  constructor(public testingService: TestingService, public signalRService: SignalRService) {
-    this.signalRService.startConnection();
-  }
-
-  test() {
-    this.signalRService.SendMessage('HI');
+  constructor() {
   }
 }

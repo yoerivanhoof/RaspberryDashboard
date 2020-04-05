@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {DiscordService} from '../../service/discord.service';
-import {DiscordServer} from '../../model/discord-server';
-import {DiscordUser} from '../../model/discord-user';
+import { Component, OnInit } from '@angular/core';
+import {DiscordUser} from "../../model/discord-user";
+import {DiscordService} from "../../service/discord.service";
+import {DiscordServer} from "../../model/discord-server";
 
 @Component({
   selector: 'app-discord',
