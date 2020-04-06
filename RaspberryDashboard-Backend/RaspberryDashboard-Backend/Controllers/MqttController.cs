@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using RaspberryDashboard_Backend.Models;
 using RaspberryDashboard_Backend.Services;
 
 namespace RaspberryDashboard_Backend.Controllers
@@ -35,8 +37,9 @@ namespace RaspberryDashboard_Backend.Controllers
 
         // POST: api/Mqtt
         [HttpPost]
-        public void Post([FromBody] string value)
+        public string Post([FromBody] MqttMessage value)
         {
+            return JsonConvert.SerializeObject(_mqttService.PublishMessage(value.Topic, value.Payload));
         }
 
         // PUT: api/Mqtt/5

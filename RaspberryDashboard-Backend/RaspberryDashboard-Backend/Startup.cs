@@ -33,11 +33,12 @@ namespace RaspberryDashboard_Backend
 
             services.AddSingleton<IDiscordService, DiscordService>();
             services.AddSingleton<IMqttService, MqttService>();
+            services.AddSingleton<ILightService, LightService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDiscordService discordService,
-            IMqttService mqttService)
+            IMqttService mqttService, ILightService lightService)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
@@ -53,6 +54,7 @@ namespace RaspberryDashboard_Backend
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<DiscordHub>("/discordhub");
+                endpoints.MapHub<LightHub>("/lighthub");
             });
         }
     }

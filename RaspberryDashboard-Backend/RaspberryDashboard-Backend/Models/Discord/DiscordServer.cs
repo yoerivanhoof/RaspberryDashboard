@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RaspberryDashboard_Backend.Models
+namespace RaspberryDashboard_Backend.Models.Discord
 {
     public class DiscordServer
     {

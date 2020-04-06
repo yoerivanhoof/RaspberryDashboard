@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RaspberryDashboard_Backend.Models;
+using RaspberryDashboard_Backend.Models.Discord;
 using RaspberryDashboard_Backend.Services;
 
 namespace RaspberryDashboard_Backend.Controllers

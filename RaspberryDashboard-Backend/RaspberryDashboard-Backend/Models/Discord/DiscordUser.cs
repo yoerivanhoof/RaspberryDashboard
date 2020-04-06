@@ -1,4 +1,4 @@
-﻿namespace RaspberryDashboard_Backend.Models
+﻿namespace RaspberryDashboard_Backend.Models.Discord
 {
     public class DiscordUser
     {

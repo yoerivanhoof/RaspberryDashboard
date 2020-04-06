@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using RaspberryDashboard_Backend.Hubs;
 using RaspberryDashboard_Backend.Models;
+using RaspberryDashboard_Backend.Models.Discord;
 
 namespace RaspberryDashboard_Backend.Services
 {

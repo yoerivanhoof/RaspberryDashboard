@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
+using MQTTnet.Client.Publishing;
+using MQTTnet.Client.Subscribing;
 
 namespace RaspberryDashboard_Backend.Services
 {
@@ -28,7 +30,11 @@ namespace RaspberryDashboard_Backend.Services
             _client.UseConnectedHandler(async e =>
             {
                 Console.WriteLine("MQTT Connected");
+
+                await _client.SubscribeAsync(new TopicFilterBuilder().WithTopic("stat/tasmota/RESULT").Build());
+
             });
+
 
             _client.UseApplicationMessageReceivedHandler(e =>
             {
@@ -42,7 +48,7 @@ namespace RaspberryDashboard_Backend.Services
         }
 
 
-        public async Task PublishMessage(string topic, string payload)
+        public MqttClientPublishResult PublishMessage(string topic, string payload)
         {
             if (_client.IsConnected)
             {
@@ -52,8 +58,10 @@ namespace RaspberryDashboard_Backend.Services
                     .WithExactlyOnceQoS()
                     .Build();
 
-                await _client.PublishAsync(message, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                return _client.PublishAsync(message, CancellationToken.None).Result; // Since 3.0.5 with CancellationToken
             }
+
+            return null;
         }
 
 

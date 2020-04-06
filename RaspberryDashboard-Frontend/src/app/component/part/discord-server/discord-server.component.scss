@@ -1,0 +1,9 @@
+.voiceChannelContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+.voiceChannel {
+  flex: 1 0 50%;
+}
