@@ -68,6 +68,9 @@ namespace RaspberryDashboard_Backend.Services
                         AvatarUrl = channelUser.GetAvatarUrl(), 
                         Deaf = channelUser.IsDeafened, 
                         Muted = channelUser.IsMuted, 
+                        SelfDeaf = channelUser.IsSelfDeafened,
+                        SelfMuted = channelUser.IsSelfMuted,
+                        Bot = channelUser.IsBot,
                         ChannelId = voiceChannel.Id.ToString()
                     });
                     

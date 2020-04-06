@@ -9,5 +9,8 @@
 
         public bool Muted { get; set; }
         public bool Deaf { get; set; }
+        public bool SelfMuted { get; set; }
+        public bool SelfDeaf { get; set; }
+        public bool Bot { get; set; }
     }
 }

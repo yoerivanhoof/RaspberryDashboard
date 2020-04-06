@@ -26,6 +26,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {LayoutModule} from "@angular/cdk/layout";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     MatMenuModule,
     MatFormFieldModule,
     FormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

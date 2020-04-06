@@ -1,16 +1,21 @@
 <div class="example-box">
   <img src="{{discordUser.AvatarUrl}}" class="userIcon"/>
-  <div>{{discordUser.Username}}</div>
+  <div class="username">{{discordUser.Username}}</div>
+  <mat-icon *ngIf="discordUser.SelfDeaf">headset_off</mat-icon>
+  <mat-icon *ngIf="discordUser.SelfMuted">mic_off</mat-icon>
+  <mat-chip-list>
+    <mat-chip color="primary" selected *ngIf="discordUser.Bot">BOT</mat-chip>
+  </mat-chip-list>
   <span class="example-spacer"></span>
-  <button mat-raised-button></button>
+
 
   <mat-slide-toggle [(ngModel)]="discordUser.Muted" (change)="userEditedEvent.emit(discordUser)" class="soundOptions">
-    <mat-icon *ngIf="discordUser.Muted" class="soundIcon">mic_off</mat-icon>
-    <mat-icon *ngIf="!discordUser.Muted" class="soundIcon">mic</mat-icon>
+    <mat-icon *ngIf="discordUser.Muted">mic_off</mat-icon>
+    <mat-icon *ngIf="!discordUser.Muted">mic</mat-icon>
   </mat-slide-toggle>
 
   <mat-slide-toggle [(ngModel)]="discordUser.Deaf" (change)="userEditedEvent.emit(discordUser)" class="soundOptions">
-    <mat-icon *ngIf="discordUser.Deaf" class="soundIcon">headset_off</mat-icon>
-    <mat-icon *ngIf="!discordUser.Deaf" class="soundIcon">headset</mat-icon>
+    <mat-icon *ngIf="discordUser.Deaf">headset_off</mat-icon>
+    <mat-icon *ngIf="!discordUser.Deaf">headset</mat-icon>
   </mat-slide-toggle>
 </div>
