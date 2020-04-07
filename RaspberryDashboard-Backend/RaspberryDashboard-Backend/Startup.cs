@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RaspberryDashboard_Backend.Hubs;
 using RaspberryDashboard_Backend.Services;
+using System;
 
 namespace RaspberryDashboard_Backend
 {
@@ -23,13 +24,15 @@ namespace RaspberryDashboard_Backend
             services.AddControllers();
             services.AddSignalR();
 
+            Console.WriteLine("Orgin " + Environment.GetEnvironmentVariable("AllowOrgin"));
+
             services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {
                 //Allow all Orgins
                 //Wildcard is not allowed with .AllowCredentials()
                 builder.AllowAnyHeader()
                     .AllowAnyMethod()
-                    .WithOrigins("*");
+                    .WithOrigins(Environment.GetEnvironmentVariable("AllowOrgin"));
             }));
 
             services.AddSingleton<IDiscordService, DiscordService>();
@@ -54,8 +57,8 @@ namespace RaspberryDashboard_Backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<DiscordHub>("/discordhub");
-                endpoints.MapHub<LightHub>("/lighthub");
+                endpoints.MapHub<DiscordHub>("/hub/discord");
+                endpoints.MapHub<LightHub>("/hub/light");
             });
         }
     }

@@ -23,6 +23,7 @@
       "launchUrl": "weatherforecast",
       "environmentVariables": {
         "DiscordBotToken": "NTkzODE3OTU2MDE0ODgyODI3.XoXlrg.hXLrizIRMWnMzV3a7fZw1LeY83E",
+        "AllowOrgin": "127.0.0.1:4200",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
