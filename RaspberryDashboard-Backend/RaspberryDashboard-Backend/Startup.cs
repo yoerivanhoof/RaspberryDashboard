@@ -25,10 +25,11 @@ namespace RaspberryDashboard_Backend
 
             services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {
+                //Allow all Orgins
+                //Wildcard is not allowed with .AllowCredentials()
                 builder.AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials()
-                    .WithOrigins("http://localhost", "http://localhost:4200");
+                    .WithOrigins("*");
             }));
 
             services.AddSingleton<IDiscordService, DiscordService>();
