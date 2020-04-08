@@ -5,6 +5,7 @@ import {DiscordServer} from "../model/discord-server";
 import {BehaviorSubject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import * as signalR from '@aspnet/signalr';
+import {type} from "os";
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +28,9 @@ export class DiscordService {
       .then(() => console.log('Connection started'))
       .catch(err => console.log('Error while starting connection: ' + err));
 
-    this.hubConnection.on('VoiceStateUpdated', (data: any) => {
-      this.httpClient.get<DiscordServer>(`${environment.backendURL}/discord`).subscribe(response => {
-        this.subject.next(response);
-      });
+
+    this.hubConnection.on('VoiceStateUpdated', (server: DiscordServer) => {
+      this.subject.next(server);
     });
   }
 

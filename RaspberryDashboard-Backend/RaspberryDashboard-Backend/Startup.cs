@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using RaspberryDashboard_Backend.Hubs;
 using RaspberryDashboard_Backend.Services;
 
@@ -21,7 +22,8 @@ namespace RaspberryDashboard_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSignalR();
+            services.AddSignalR()
+                .AddJsonProtocol(options => { options.PayloadSerializerOptions.PropertyNamingPolicy = null; });
 
             services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {

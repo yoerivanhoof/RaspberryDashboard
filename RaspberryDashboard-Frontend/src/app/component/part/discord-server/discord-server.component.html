@@ -1,3 +1,6 @@
 <div cdkDropListGroup class="voiceChannelContainer">
-  <app-discord-voice-channel class="voiceChannel" [allChannels]="discordServer.VoiceChannels" (userEditedEvent)="userEditedEvent.emit($event)" *ngFor="let channel of discordServer.VoiceChannels" [voiceChannel]="channel"></app-discord-voice-channel>
+  <app-discord-voice-channel class="voiceChannel" [allChannels]="discordServer.VoiceChannels"
+                             (userEditedEvent)="userEditedEvent.emit($event)"
+                             *ngFor="let channel of discordServer.VoiceChannels"
+                             [voiceChannel]="channel"></app-discord-voice-channel>
 </div>

@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Discord;
-using Discord.Audio;
 using Discord.WebSocket;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using RaspberryDashboard_Backend.Hubs;
-using RaspberryDashboard_Backend.Models;
 using RaspberryDashboard_Backend.Models.Discord;
 
 namespace RaspberryDashboard_Backend.Services
 {
-    public class DiscordService: IDiscordService
+    public class DiscordService : IDiscordService
     {
-        private DiscordSocketClient _client;
         private readonly IHubContext<DiscordHub> _hub;
+        private DiscordSocketClient _client;
 
         public DiscordService(IHubContext<DiscordHub> hub)
         {
@@ -36,62 +32,66 @@ namespace RaspberryDashboard_Backend.Services
             _client.MessageReceived += MessageReceived;
             _client.UserVoiceStateUpdated += client_UserVoiceStateUpdated;
 
-            await _client.LoginAsync(TokenType.Bot,
-                Environment.GetEnvironmentVariable("DiscordBotToken"));
+            await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DiscordBotToken"));
             await _client.StartAsync();
 
             // Block this task until the program is closed.
             await Task.Delay(-1);
         }
 
-
-        private async Task client_UserVoiceStateUpdated(SocketUser user, SocketVoiceState before, SocketVoiceState after)
-        {
-            await _hub.Clients.All.SendCoreAsync("VoiceStateUpdated", new[] {""});
-        }
-
-        public string GetCurrentState()
+        public DiscordServer GetCurrentState()
         {
             if (_client.ConnectionState != ConnectionState.Connected)
-                return ""; //in case we get an api  call before the client is connected.
-            
+                return null; //in case we get an api  call before the client is connected.
+
             var server = new DiscordServer();
-            foreach (var voiceChannel in _client.GetGuild(377533648620093441).VoiceChannels.OrderBy(x=>x.Position))
+            foreach (var voiceChannel in _client.GetGuild(377533648620093441).VoiceChannels.OrderBy(x => x.Position))
             {
-                var channel = new DiscordVoiceChannel(){Id = voiceChannel.Id.ToString(), Name = voiceChannel.Name};
+                var channel = new DiscordVoiceChannel {Id = voiceChannel.Id.ToString(), Name = voiceChannel.Name};
 
                 foreach (var channelUser in voiceChannel.Users)
-                {
-                    channel.Users.Add(new DiscordUser()
+                    channel.Users.Add(new DiscordUser
                     {
-                        Id = channelUser.Id.ToString(), 
-                        Username = !string.IsNullOrEmpty(channelUser.Nickname) ? channelUser.Nickname : channelUser.Username, 
-                        AvatarUrl = channelUser.GetAvatarUrl(), 
-                        Deaf = channelUser.IsDeafened, 
-                        Muted = channelUser.IsMuted, 
+                        Id = channelUser.Id.ToString(),
+                        Username = !string.IsNullOrEmpty(channelUser.Nickname) ? channelUser.Nickname : channelUser.Username,
+                        AvatarUrl = channelUser.GetAvatarUrl(),
+                        Deaf = channelUser.IsDeafened,
+                        Muted = channelUser.IsMuted,
                         SelfDeaf = channelUser.IsSelfDeafened,
                         SelfMuted = channelUser.IsSelfMuted,
                         Bot = channelUser.IsBot,
                         ChannelId = voiceChannel.Id.ToString()
                     });
-                    
-                }
                 server.VoiceChannels.Add(channel);
             }
 
-            return JsonConvert.SerializeObject(server);
+            return server;
         }
 
         public void UpdateUser(DiscordUser discordUser)
         {
-            _client.GetGuild(377533648620093441).GetUser(Convert.ToUInt64(discordUser.Id)).ModifyAsync(user =>
+            var oldUser = _client.GetGuild(377533648620093441).GetUser(Convert.ToUInt64(discordUser.Id));
+
+            if (oldUser.IsMuted != discordUser.Muted)
             {
-                user.ChannelId = Convert.ToUInt64(discordUser.ChannelId);
-                user.Mute = discordUser.Muted;
-                user.Deaf = discordUser.Deaf;
-            });
+                oldUser.ModifyAsync(user => { user.Mute = discordUser.Muted; });
+            }
+            else if (oldUser.IsDeafened != discordUser.Deaf)
+            {
+                oldUser.ModifyAsync(user => { user.Deaf = discordUser.Deaf; });
+            }
+            else if (oldUser.VoiceChannel.Id != Convert.ToUInt64(discordUser.ChannelId))
+            {
+                oldUser.ModifyAsync(user => { user.ChannelId = Convert.ToUInt64(discordUser.ChannelId); });
+            }
         }
-        
+
+        private async Task client_UserVoiceStateUpdated(SocketUser user, SocketVoiceState before,
+            SocketVoiceState after)
+        {
+            await _hub.Clients.All.SendAsync("VoiceStateUpdated", GetCurrentState());
+        }
+
         private Task Log(LogMessage msg)
         {
             Console.WriteLine($"Discord.Net {msg.ToString()}");
@@ -106,16 +106,16 @@ namespace RaspberryDashboard_Backend.Services
                     await message.Channel.SendMessageAsync($"Nee {message.Author.Username}");
                     break;
                 case "!boobs":
-                    await message.Channel.SendMessageAsync($"https://www.dumpert.nl/tag/boobs");
+                    await message.Channel.SendMessageAsync("https://www.dumpert.nl/tag/boobs");
                     break;
                 case "!kick":
                     await _client.GetGuild(377533648620093441).GetUser(message.Author.Id).ModifyAsync(user =>
-                        {
-                            user.ChannelId = _client.GetGuild(377533648620093441).AFKChannel.Id;
-                        });
+                    {
+                        user.ChannelId = _client.GetGuild(377533648620093441).AFKChannel.Id;
+                    });
                     break;
                 case "!join":
-                    _client.GetGuild(377533648620093441).VoiceChannels.First().ConnectAsync();
+                    await _client.GetGuild(377533648620093441).VoiceChannels.First().ConnectAsync();
                     break;
             }
         }
