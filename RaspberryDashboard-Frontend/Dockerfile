@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 ### STAGE 2: Run ###
-FROM nginx:stable-alpine
+FROM arm32v7/nginx:stable-alpine
 EXPOSE 80
 RUN rm /etc/nginx/conf.d/default.conf
 COPY --from=build /usr/src/app/nginx_config/default.conf /etc/nginx/conf.d/default.conf
