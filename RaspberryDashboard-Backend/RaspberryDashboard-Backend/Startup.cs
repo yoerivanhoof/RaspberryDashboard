@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using RaspberryDashboard_Backend.Hubs;
 using RaspberryDashboard_Backend.Services;
+using System;
 
 namespace RaspberryDashboard_Backend
 {
@@ -25,12 +26,15 @@ namespace RaspberryDashboard_Backend
             services.AddSignalR()
                 .AddJsonProtocol(options => { options.PayloadSerializerOptions.PropertyNamingPolicy = null; });
 
+            Console.WriteLine("Orgin " + Environment.GetEnvironmentVariable("AllowOrgin"));
+
             services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {
+                //Allow all Orgins
+                //Wildcard is not allowed with 
                 builder.AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials()
-                    .WithOrigins("http://localhost", "http://localhost:4200");
+                    .AllowAnyOrigin();
             }));
 
             services.AddSingleton<IDiscordService, DiscordService>();
@@ -55,8 +59,8 @@ namespace RaspberryDashboard_Backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<DiscordHub>("/discordhub");
-                endpoints.MapHub<LightHub>("/lighthub");
+                endpoints.MapHub<DiscordHub>("/hub/discord");
+                endpoints.MapHub<LightHub>("/hub/light");
             });
         }
     }

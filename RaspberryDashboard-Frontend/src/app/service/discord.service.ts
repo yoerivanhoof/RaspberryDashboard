@@ -20,7 +20,7 @@ export class DiscordService {
       this.subject.next(response);
     });
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:5001/discordhub')
+      .withUrl(`${environment.hubURL}/discord`)
       .build();
 
     this.hubConnection

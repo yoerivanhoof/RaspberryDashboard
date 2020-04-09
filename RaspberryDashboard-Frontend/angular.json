@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "RaspberryDashboard-Frontend"
+  "defaultProject": "RaspberryDashboard-Frontend",
+  "cli": {
+    "analytics": false
+  }
 }

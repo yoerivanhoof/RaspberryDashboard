@@ -4,22 +4,25 @@ services:
         container_name: therivervan-raspberrydashboardbackend
         image: therivervan/raspberrydashboardbackend
         environment:
-                - DiscordBotToken=NTkzODE3OTU2MDE0ODgyODI3.XoXlrg.hXLrizIRMWnMzV3a7fZw1LeY83E
+                - DiscordBotToken=Njk1NzQ1NDE0NzQ5NzQ5MzA5.Xox7ow.ZuUou90vHI70qc3rRW-Cu-rqpgg
+                - AllowOrgin=192.168.178.52:5001
                 - ASPNETCORE_HTTPS_PORT=5001
                 - ASPNETCORE_URLS=https://+;http://+ mywebapi
                 - Kestrel__Certificates__Default__Path=/app/cert-aspnetcore.pfx
                 - Kestrel__Certificates__Default__Password=ufo
         build:
-            context: RaspberryDashboard-Backend\
-            dockerfile: DockerfileLocal
+            context: RaspberryDashboard-Backend/
+            dockerfile: Dockerfile
         ports:
             - "5000:80"
             - "5001:443"
     dashboard-frontend:
         container_name: therivervan-raspberrydashboardfrontend
         image: therivervan/raspberrydashboardfrontend
+        environment:
+                - baseURL=https://192.168.178.52:5001/
         build: 
-            context: RaspberryDashboard-Frontend\
+            context: RaspberryDashboard-Frontend/
             dockerfile: Dockerfile
         ports:
             - "80:80"
