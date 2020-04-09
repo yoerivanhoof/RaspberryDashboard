@@ -8,8 +8,9 @@ namespace RaspberryDashboard_Backend.Services
     {
         public Task MainAsync();
 
-        public string GetCurrentState();
+        public DiscordServer GetCurrentState();
 
         public void UpdateUser(DiscordUser discordUser);
+
     }
 }

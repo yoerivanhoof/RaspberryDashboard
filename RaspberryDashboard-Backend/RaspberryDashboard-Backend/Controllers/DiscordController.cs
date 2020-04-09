@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RaspberryDashboard_Backend.Models.Discord;
 using RaspberryDashboard_Backend.Services;
 
@@ -18,7 +20,7 @@ namespace RaspberryDashboard_Backend.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(_discordService.GetCurrentState());
+            return Ok(JsonConvert.SerializeObject(_discordService.GetCurrentState()));
         }
 
         [HttpPost]
