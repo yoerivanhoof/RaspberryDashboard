@@ -34,7 +34,8 @@ namespace RaspberryDashboard_Backend
                 //Wildcard is not allowed with 
                 builder.AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowAnyOrigin();
+                    .SetIsOriginAllowed(_ => true) //workaround to the max
+                    .AllowCredentials();
             }));
 
             services.AddSingleton<IDiscordService, DiscordService>();
