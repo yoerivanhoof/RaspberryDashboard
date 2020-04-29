@@ -1,4 +1,5 @@
 **/.classpath
+**/launchSettings.json
 **/.dockerignore
 **/.env
 **/.git

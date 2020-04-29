@@ -38,6 +38,7 @@ namespace RaspberryDashboard_Backend
                     .AllowCredentials();
             }));
 
+            services.AddSingleton<IWeatherService, WeatherService>();
             services.AddSingleton<IDiscordService, DiscordService>();
             services.AddSingleton<IMqttService, MqttService>();
             services.AddSingleton<ILightService, LightService>();
@@ -45,7 +46,7 @@ namespace RaspberryDashboard_Backend
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDiscordService discordService,
-            IMqttService mqttService, ILightService lightService)
+            IMqttService mqttService, ILightService lightService, IWeatherService weatherService)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
