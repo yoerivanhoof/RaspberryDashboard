@@ -22,7 +22,7 @@
       "launchBrowser": false,
       "launchUrl": "weatherforecast",
       "environmentVariables": {
-        "DiscordBotToken": "NTkzODE3OTU2MDE0ODgyODI3.XoXlrg.hXLrizIRMWnMzV3a7fZw1LeY83E",
+        "DiscordBotToken": "placeholder",
         "AllowOrgin": "127.0.0.1:4200",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
