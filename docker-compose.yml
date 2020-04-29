@@ -4,7 +4,7 @@ services:
         container_name: therivervan-raspberrydashboardbackend
         image: therivervan/raspberrydashboardbackend
         environment:
-                - DiscordBotToken=Njk1NzQ1NDE0NzQ5NzQ5MzA5.Xox7ow.ZuUou90vHI70qc3rRW-Cu-rqpgg
+                - DiscordBotToken=placeholder
                 - AllowOrgin=192.168.178.52:5001
                 - ASPNETCORE_HTTPS_PORT=5001
                 - ASPNETCORE_URLS=https://+;http://+ mywebapi
