@@ -4,6 +4,6 @@ namespace RaspberryDashboard_Backend.Services
 {
     public interface IWeatherService
     {
-        public string GetWeather(string location);
+        public OpenWeather GetWeather(string location);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using RaspberryDashboard_Backend.JsonContractResolver;
 using RaspberryDashboard_Backend.Services;
 
 namespace RaspberryDashboard_Backend.Controllers
@@ -15,11 +17,13 @@ namespace RaspberryDashboard_Backend.Controllers
         }
 
         // GET: api/Weather
-        [HttpGet]
-        public ActionResult Get()
+        [HttpGet("{place}")]
+        public ActionResult Get(string place)
         {
-            return Ok(_weatherService.GetWeather("Eersel")); //todo
+            return Ok(JsonConvert.SerializeObject(_weatherService.GetWeather(place), new JsonSerializerSettings
+            { 
+                ContractResolver = new LongNameContractResolver()
+            }));
         }
-
     }
 }
