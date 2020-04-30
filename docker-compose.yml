@@ -20,7 +20,7 @@ services:
         container_name: therivervan-raspberrydashboardfrontend
         image: therivervan/raspberrydashboardfrontend
         environment:
-                - baseURL=https://192.168.178.52:5001/
+                - baseURL=https://192.168.178.52:5001
         build: 
             context: RaspberryDashboard-Frontend/
             dockerfile: Dockerfile.amd64
