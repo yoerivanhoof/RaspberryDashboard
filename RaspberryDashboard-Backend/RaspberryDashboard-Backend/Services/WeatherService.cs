@@ -11,13 +11,22 @@ namespace RaspberryDashboard_Backend.Services
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response =
-                    httpClient.GetAsync(
-                        $"https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid={Environment.GetEnvironmentVariable("OpenWeatherApiKey")}")
-                ) 
+                try
                 {
-                    return JsonConvert.DeserializeObject<OpenWeather>(response.Result.Content.ReadAsStringAsync().Result);
+                    using (var response =
+                        httpClient.GetAsync(
+                            $"https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid={Environment.GetEnvironmentVariable("OpenWeatherApiKey")}")
+                    )
+                    {
+                        return JsonConvert.DeserializeObject<OpenWeather>(response.Result.Content.ReadAsStringAsync().Result);
+                    }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return new OpenWeather() { Error = e.Message };
+                }
+                
             }
 
             return new OpenWeather();

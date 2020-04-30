@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RaspberryDashboard_Backend.JsonContractResolver;
 using RaspberryDashboard_Backend.Services;
@@ -24,6 +25,7 @@ namespace RaspberryDashboard_Backend.Controllers
             {
                 ContractResolver = new LongNameContractResolver()
             }));
+
         }
     }
 }

@@ -46,7 +46,7 @@ namespace RaspberryDashboard_Backend
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDiscordService discordService,
-            IMqttService mqttService, ILightService lightService, IWeatherService weatherService)
+            IMqttService mqttService, ILightService lightService)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 

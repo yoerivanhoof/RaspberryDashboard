@@ -17,6 +17,8 @@ namespace RaspberryDashboard_Backend.Models.Weather
         [JsonProperty("name")]
         public string Place { get; set; }
 
+        public string Error { get; set; }
+
     }
 
     public class Wind
