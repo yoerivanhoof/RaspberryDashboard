@@ -1,4 +1,4 @@
-﻿using RaspberryDashboard_Backend.Models;
+﻿using RaspberryDashboard_Backend.Models.Weather;
 
 namespace RaspberryDashboard_Backend.Services
 {

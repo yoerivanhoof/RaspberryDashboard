@@ -27,6 +27,7 @@ import {LayoutModule} from "@angular/cdk/layout";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatChipsModule} from "@angular/material/chips";
+import { WeatherComponent } from './component/part/weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatChipsModule} from "@angular/material/chips";
     DiscordServerComponent,
     DiscordVoiceChannelComponent,
     DiscordUserComponent,
-    LightComponent
+    LightComponent,
+    WeatherComponent
   ],
   imports: [
     HttpClientModule,

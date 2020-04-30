@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using Newtonsoft.Json;
-using RaspberryDashboard_Backend.Models;
+using RaspberryDashboard_Backend.Models.Weather;
 
 namespace RaspberryDashboard_Backend.Services
 {
@@ -11,7 +11,10 @@ namespace RaspberryDashboard_Backend.Services
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = httpClient.GetAsync($"https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid={Environment.GetEnvironmentVariable("OpenWeatherApiKey")}")) //todo
+                using (var response =
+                    httpClient.GetAsync(
+                        $"https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid={Environment.GetEnvironmentVariable("OpenWeatherApiKey")}")
+                ) 
                 {
                     return JsonConvert.DeserializeObject<OpenWeather>(response.Result.Content.ReadAsStringAsync().Result);
                 }

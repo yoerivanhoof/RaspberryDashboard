@@ -21,7 +21,7 @@ namespace RaspberryDashboard_Backend.Controllers
         public ActionResult Get(string place)
         {
             return Ok(JsonConvert.SerializeObject(_weatherService.GetWeather(place), new JsonSerializerSettings
-            { 
+            {
                 ContractResolver = new LongNameContractResolver()
             }));
         }
