@@ -22,7 +22,7 @@
       "launchBrowser": false,
       "launchUrl": "weatherforecast",
         "environmentVariables": {
-            "DiscordBotToken": "NTkzODE3OTU2MDE0ODgyODI3.Xqnn-A.X0zCP2cdB17-Mo3Jc8EqFnHt4us",
+            "DiscordBotToken": "baa",
             "OpenWeatherApiKey": "6e188a0a3342cd3b4778108e283a20cb",
             "AllowOrgin": "127.0.0.1:4200",
             "ASPNETCORE_ENVIRONMENT": "Development"
