@@ -38,6 +38,7 @@ namespace RaspberryDashboard_Backend
                     .AllowCredentials();
             }));
 
+            services.AddSingleton<IWeatherService, WeatherService>();
             services.AddSingleton<IDiscordService, DiscordService>();
             services.AddSingleton<IMqttService, MqttService>();
             services.AddSingleton<ILightService, LightService>();

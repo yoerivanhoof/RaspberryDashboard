@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DiscordServer} from "../../../model/discord-server";
-import {DiscordUser} from "../../../model/discord-user";
+import {DiscordServer} from "../../../model/discord/discord-server";
+import {DiscordUser} from "../../../model/discord/discord-user";
 
 @Component({
   selector: 'app-discord-server',

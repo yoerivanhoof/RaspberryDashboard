@@ -1,0 +1,17 @@
+<mat-card class="weather-card">
+  <mat-card-header>
+    <div mat-card-avatar class="weather-header-image" [style.backgroundImage]="'url('+weather.Weather[0].IconUrl+')'"></div>
+    <mat-card-title>{{weather.Place}} - {{weather.Main.Temp | number: '0.0-0'}}℃</mat-card-title>
+    <mat-card-subtitle>{{weather.Weather[0].Main}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      Description: {{weather.Weather[0].Description}} <br>
+      Min temperature: {{weather.Main.TempMin}}℃ <br>
+      Max temperature: {{weather.Main.TempMax}}℃ <br>
+      Wind speed: {{weather.Wind.Speed}} m/s<br>
+      Visibility: {{weather.Visibility}} Meters <br>
+    </p>
+  </mat-card-content>
+</mat-card>

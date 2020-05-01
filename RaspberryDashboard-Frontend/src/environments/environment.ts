@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   baseURL: window["env"]["baseURL"] || 'https://localhost:5001',
   backendURL: window["env"]["baseURL"]  + "/api" || 'https://localhost:5001/api',
-  hubURL: window["env"]["baseURL"] + "/hub"  || 'https://localhost:5001/hub'  
+  hubURL: window["env"]["baseURL"] + "/hub" || 'https://localhost:5001/hub'
 };
 
 /*

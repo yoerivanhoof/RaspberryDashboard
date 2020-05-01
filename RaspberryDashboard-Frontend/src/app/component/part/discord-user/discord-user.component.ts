@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DiscordUser} from "../../../model/discord-user";
+import {DiscordUser} from "../../../model/discord/discord-user";
 import {MatSlideToggleChange} from "@angular/material/slide-toggle";
 
 @Component({
