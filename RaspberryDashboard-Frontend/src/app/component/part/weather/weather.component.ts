@@ -11,7 +11,6 @@ export class WeatherComponent implements OnInit {
   weather: OpenWeather = new OpenWeather();
 
   constructor(public weatherService: WeatherService) {
-    console.log(localStorage.getItem('location'));
     if (localStorage.getItem('location') === null) {
       localStorage.setItem('location', 'Eindhoven');
     }

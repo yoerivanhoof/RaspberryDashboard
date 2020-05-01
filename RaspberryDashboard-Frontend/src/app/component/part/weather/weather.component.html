@@ -1,6 +1,6 @@
-<mat-card class="example-card">
+<mat-card class="weather-card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image" [style.backgroundImage]="'url(https://openweathermap.org/img/wn/'+weather.Weather[0].Icon+'.png)'"></div>
+    <div mat-card-avatar class="weather-header-image" [style.backgroundImage]="'url('+weather.Weather[0].IconUrl+')'"></div>
     <mat-card-title>{{weather.Place}} - {{weather.Main.Temp | number: '0.0-0'}}℃</mat-card-title>
     <mat-card-subtitle>{{weather.Weather[0].Main}}</mat-card-subtitle>
   </mat-card-header>

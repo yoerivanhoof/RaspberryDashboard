@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Newtonsoft.Json;
 
 namespace RaspberryDashboard_Backend.Models.Weather
 {
@@ -55,6 +56,11 @@ namespace RaspberryDashboard_Backend.Models.Weather
         public string Description { get; set; }
         [JsonProperty("icon")] 
         public string Icon { get; set; }
+
+        public string IconUrl
+        {
+            get => $"https://openweathermap.org/img/wn/{Icon}.png";
+        }
     }
 
     public class WeatherCoord

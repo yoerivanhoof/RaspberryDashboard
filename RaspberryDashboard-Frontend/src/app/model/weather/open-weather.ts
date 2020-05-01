@@ -8,6 +8,7 @@ class Weather {
   public Main: string;
   public Description: string;
   public Icon: string;
+  public IconUrl: string;
 }
 
 class MainWeather {
